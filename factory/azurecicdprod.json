@@ -1,0 +1,9 @@
+{
+	"name": "azurecicdprod",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "8565bc92-4f1d-48d0-b9c5-24013ff91c54",
+		"tenantId": "aac29dfc-09fb-401d-b592-26cadcb93344"
+	}
+}
