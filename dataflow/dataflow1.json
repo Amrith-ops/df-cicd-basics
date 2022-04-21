@@ -27,6 +27,9 @@
 				},
 				{
 					"name": "DerivingFirstLastName"
+				},
+				{
+					"name": "ReplacingNullValuesLastName"
 				}
 			],
 			"scriptLines": [
@@ -43,7 +46,8 @@
 				"SelectSource filter(!isNull(UserName)) ~> FilteringNull",
 				"FilteringNull derive(firstName = split(UserName, \".\")[1],",
 				"          lastName = split(UserName, \".\")[2]) ~> DerivingFirstLastName",
-				"DerivingFirstLastName sink(allowSchemaDrift: true,",
+				"DerivingFirstLastName derive(lastName = iif(isNull(lastName), firstName, lastName)) ~> ReplacingNullValuesLastName",
+				"ReplacingNullValuesLastName sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
 				"     insertable:true,",
